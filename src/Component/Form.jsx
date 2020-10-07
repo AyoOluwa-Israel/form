@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import fire from '../fire';
 import  Login from './Login';
 import './Form.css';
+import Hero from './Hero';
 
 const Form = () => {
 
@@ -89,6 +90,9 @@ const Form = () => {
 
   return (
     <div>
+    {user ? (
+        <Hero handleLogOut={handleLogOut} />
+    ):(
       <Login
         email={email}
         setEmail={setEmail} 
@@ -100,9 +104,11 @@ const Form = () => {
         setHasAccount={setHasAccount}
         emailError={emailError}
         passwordError={passwordError}
-
-
       />
+    )}
+      
+
+      
     </div>
   )
 }
