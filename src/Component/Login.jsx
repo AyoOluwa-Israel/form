@@ -27,8 +27,7 @@ const Login = (props) => {
         <p className="errorMsg">{emailError}</p>
 
         <label htmlFor="">Password</label>
-        <input type="text" 
-        autoFocus 
+        <input type="text"  
         required 
         value={password} onChange={e => setPassword(e.target.value)} />
         <p className="errorMsg">{passwordError}</p>

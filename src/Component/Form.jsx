@@ -23,7 +23,7 @@ const Form = () => {
 
   const clearErrors = () => {
     setEmailError('');
-    setPasswordError();
+    setPasswordError('');
   }
 
 
@@ -42,26 +42,28 @@ const Form = () => {
             setEmailError(err.message);
             break;
           case "auth/wrong-password":
+            setPasswordError(err.message);
           break;
         }
       });
   };
 
 
-  const handleSignUp = () => {
+  const handleSignUp = () => { 
 
     clearErrors();
 
     fire
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(err => {
+      .catch(err => { 
         switch(err.code){
           case "auth/email-already-in-use":
           case "auth/invalid-email":
             setEmailError(err.message);
             break;
           case "auth/weak-password":
+            setPasswordError(err.message);
           break;
         }
       });
@@ -72,13 +74,14 @@ const Form = () => {
     fire.auth().signOut();
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const authListener = () =>{
-    fire.auth().onAuthStateChanged(user => {
+    fire.auth().onAuthStateChanged((user) => {
       if(user){
         clearInput();
         setUser(user);
       }else{
-        setUser("");
+        setUser('');
       }
     });
   };

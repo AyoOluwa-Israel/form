@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Hero = (handleLogOut) => {
+const Hero = ({handleLogOut}) => {
   return (
     <div className= "hero">
       <nav>
